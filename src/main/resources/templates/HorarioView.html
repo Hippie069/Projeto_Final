@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horario</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <form th:action="@{/salvarhorario}"  method="POST">
+        <label>Data</label>
+        <input type="text"  name="data" required/>
+        <br>
+        <label>Hora</label>
+        <input type="text"  name="hora" required/>
+        <br>
+        <br>
+        <label>Cliente:</label>
+        <select th:field="${horario.cliente}" required>
+            <option value="">Qual Cliente?</option>
+            <option th:each="cliente : ${clientes}"
+                        th:value="${cliente.id}"
+                        th:text="${cliente.nome}">
+            </option>
+        </select>
+        <br>
+        <br>
+        <label>Profissional:</label>
+        <select th:field="${horario.profissional}" required>
+            <option value="">Qual Profissional?</option>
+            <option th:each="profissional : ${profissionais}"
+                        th:value="${profissional.id}"
+                        th:text="${profissional.nome}">
+            </option>
+        </select>
+        <br>
+        <br>
+
+        <label>Servico:</label>
+        <select th:field="${horario.profissional.servico}" required>
+            <option value="">Qual Servico?</option>
+            <option th:each="servico : ${profissionais.servico}"
+                        th:value="${servico.id}"
+                        th:text="${servico.nome}">
+            </option>
+        </select>
+
+        <input type="submit" value="Salvar" />
+
+    </form>
+    <br>
+    <br>
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Nome</th>
+            <th>Data</th>
+            <th>Hora</th>
+            <th>Cliente</th>
+            <th>Profissional</th>
+            <th>Servico</th>
+        </tr>
+       
+        <tr th:each="horario : ${horarios}">
+            <td th:text="${horario.id}"></td>
+            <td th:text="${horario.data}"></td>
+            <td th:text="${horario.hora}"></td>
+            <td th:text="${horario.cliente.nome}"></td>
+            <td th:text="${horario.profissional.nome}"></td>
+            <td th:text="${horario.servico.nome}"></td>
+        </tr>
+    </table>
+</body>
+</html>

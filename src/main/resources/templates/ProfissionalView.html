@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profissional</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <h1>Profissional</h1>
+    <a href="/">Menu</a>
+    <br>
+    <br>
+    <form th:action="@{/salvarprofissional}" method="POST">
+        <label>Nome:</label>
+        <input type="text" name="nome" required/>
+        <br>
+        <input type="submit" value="Cadastrar" />
+    </form>
+    <br>
+    
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Nome</th>
+        </tr>
+        <tr th:each="profissional : ${profissionais}">
+            <td th:text="${profissional.id}"></td>
+            <td th:text="${profissional.nome}"></td>
+        </tr>
+    </table>
+</body>
+</html>
