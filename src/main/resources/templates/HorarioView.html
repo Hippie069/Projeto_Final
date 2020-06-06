@@ -11,7 +11,11 @@
     </style>
 </head>
 <body>
-    <form th:action="@{/salvarhorario}"  method="POST">
+    <h1>Marcar Horário</h1>
+    <a href="/">Menu</a>
+    <br>
+    <br>
+    <form th:action="@{/salvarhorario}" method="POST">
         <label>Data</label>
         <input type="text"  name="data" required/>
         <br>
@@ -40,15 +44,6 @@
         <br>
         <br>
 
-        <label>Servico:</label>
-        <select th:field="${horario.profissional.servico}" required>
-            <option value="">Qual Servico?</option>
-            <option th:each="servico : ${profissionais.servico}"
-                        th:value="${servico.id}"
-                        th:text="${servico.nome}">
-            </option>
-        </select>
-
         <input type="submit" value="Salvar" />
 
     </form>
@@ -57,7 +52,6 @@
     <table>
         <tr>
             <th>Id</th>
-            <th>Nome</th>
             <th>Data</th>
             <th>Hora</th>
             <th>Cliente</th>
@@ -71,7 +65,7 @@
             <td th:text="${horario.hora}"></td>
             <td th:text="${horario.cliente.nome}"></td>
             <td th:text="${horario.profissional.nome}"></td>
-            <td th:text="${horario.servico.nome}"></td>
+            <td> <a th:href="@{'/escolherservicos/' + ${horario.id}}">Detalhes</a></td>
         </tr>
     </table>
 </body>

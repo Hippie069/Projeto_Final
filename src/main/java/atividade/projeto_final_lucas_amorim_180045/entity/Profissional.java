@@ -29,7 +29,7 @@ public class Profissional implements Serializable{
     @ManyToMany
     @JoinTable(
         name="ServicoProfissional",
-        uniqueConstraints = @UniqueConstraint(columnNames = {"id_profissional, id_servico"}),
+        uniqueConstraints = @UniqueConstraint(columnNames = {"id_profissional", "id_servico"}),
         joinColumns = @JoinColumn(name="id_profissional"),
         inverseJoinColumns = @JoinColumn(name="id_servico")
     )

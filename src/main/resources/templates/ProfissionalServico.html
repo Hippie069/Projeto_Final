@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Serviços do Profissional</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <h1>Servico</h1>
+    <a href="/">Menu</a>
+    <a href="/profissional">voltar</a>
+    <br>
+    <br>
+    <b>Id: </b> 
+    <span th:text="${profissional.id}"></span>
+    <br><b>Profissional: </b> 
+    <span th:text="${profissional.nome}"></span>
+
+    <br>
+    <br>
+    <h1>Servicos</h1>
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Serviço</th>
+        </tr>
+       
+        <tr th:each="servico: ${profissional.servico}">
+            <td th:text="${servico.id}"></td>
+            <td th:text="${servico.nome}"></td>
+        </tr>
+    </table>
+    <br>
+    <br>
+
+    <form th:action="@{/addservico(cod=${profissional.id})}" method="POST">
+        <label><b>Servicos:</b></label>
+        <select name="ids" required>
+            <option value="">Escolha os Serviços</option>
+            <option th:each="servico : ${servicos}"
+                        th:value="${servico.id}"
+                        th:text="${servico.nome}">
+            </option>
+        </select>
+        <input type="submit" value="Adicionar" />
+    </form>
+</body>
+</html>

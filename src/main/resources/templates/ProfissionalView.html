@@ -27,10 +27,14 @@
         <tr>
             <th>Id</th>
             <th>Nome</th>
+            <th>Serviços</th>
+            <th>Horarios</th>
         </tr>
         <tr th:each="profissional : ${profissionais}">
             <td th:text="${profissional.id}"></td>
             <td th:text="${profissional.nome}"></td>
+            <td> <a th:href="@{'/adicionarservicos/' + ${profissional.id}}">Detalhes</a></td>
+            <td> <a th:href="@{'/verhorarios/' + ${profissional.id}}">Detalhes</a></td>
         </tr>
     </table>
 </body>

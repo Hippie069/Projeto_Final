@@ -1,13 +1,17 @@
 package atividade.projeto_final_lucas_amorim_180045.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.UniqueConstraint;
 
 @Entity
 public class Horario implements Serializable{
@@ -19,9 +23,14 @@ public class Horario implements Serializable{
     private String data;
     private String hora;
 
-    @ManyToOne
-    @JoinColumn(name="ID_PRESTADO")
-    private Servico servico;
+    @ManyToMany
+    @JoinTable(
+        name = "HorarioServico",
+        uniqueConstraints = @UniqueConstraint(columnNames = {"id_horario", "id_servi"}),
+        joinColumns = @JoinColumn(name="id_horario"),
+        inverseJoinColumns = @JoinColumn(name="id_servi")
+    )
+    private List<Servico> servicos;
 
     @ManyToOne
     @JoinColumn(name="ID_MARCADO")
@@ -37,14 +46,6 @@ public class Horario implements Serializable{
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public Servico getServico() {
-        return servico;
-    }
-
-    public void setServico(Servico servico) {
-        this.servico = servico;
     }
 
     public Cliente getCliente() {
@@ -77,6 +78,14 @@ public class Horario implements Serializable{
 
     public void setHora(String hora) {
         this.hora = hora;
+    }
+
+    public List<Servico> getServicos() {
+        return servicos;
+    }
+
+    public void setServicos(List<Servico> servicos) {
+        this.servicos = servicos;
     }
 
     

@@ -10,7 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import javax.persistence.UniqueConstraint;
 
 @Entity
@@ -22,14 +21,19 @@ public class Servico implements Serializable{
     private int id;
     private String nome;
 
-    @OneToMany
-    @JoinColumn(name="ID_PRESTADO")    
+    @ManyToMany
+    @JoinTable(
+        name = "HorarioServico",
+        uniqueConstraints = @UniqueConstraint(columnNames = {"id_horario", "id_servi"}),
+        joinColumns = @JoinColumn(name="id_servi"),
+        inverseJoinColumns = @JoinColumn(name="id_horario")
+    )  
     private List<Horario> horario;
 
     @ManyToMany
     @JoinTable(
         name="ServicoProfissional",
-        uniqueConstraints = @UniqueConstraint(columnNames = {"id_profissional, id_servico"}),
+        uniqueConstraints = @UniqueConstraint(columnNames = {"id_profissional", "id_servico"}),
         joinColumns = @JoinColumn(name="id_servico"),
         inverseJoinColumns = @JoinColumn(name="id_profissional")
     )
