@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <h1>Atualizar </h1>    
+    <a href="/">Menu</a>
+    <a href="/horario">Voltar</a>
+    <br>
+    <br>
+    <form th:action="@{/salvarhorario}" th:object="${horario}" method="POST" id="formHorario">
+      
+        <label>Id:</label> <span th:text="${horario.id}"></span>
+        <br>
+        <input type="hidden" th:value="${horario.id}" th:field="${horario.id}" name="id" />
+      
+        <label>Data:</label>
+        <input type="text" placeholder="Digite a data" th:value="${horario.data}" name="nome" required/>
+        <br>  
+        <label>Hora:</label>
+        <input type="text" placeholder="Digite a hora" th:value="${horario.hora}" name="hora" required/>
+        <br>
+        
+        <label>Cliente:</label>
+        <select th:field="${horario.cliente}" required>
+            <option value="">Cliente</option>
+            <option th:each="cliente : ${clientes}"
+                        th:value="${cliente.id}"
+                        th:text="${cliente.nome}">
+            </option>
+        </select>
+
+        <label>Profissional:</label>
+        <select th:field="${horario.profissional}" required>
+            <option value="">Profissional</option>
+            <option th:each="profissional : ${profissionais}"
+                        th:value="${profissional.id}"
+                        th:text="${profissional.nome}">
+            </option>
+        </select>
+
+        <input type="submit" value="Salvar" />
+        <input type="reset"  value="Cancelar"/>
+    </form>
+</body>
+</html>

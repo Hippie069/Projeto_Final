@@ -27,10 +27,14 @@
         <tr>
             <th>Id</th>
             <th>Nome</th>
+            <th>Atualizar</th>
+            <th>Remover</th>
         </tr>
         <tr th:each="servico : ${servicos}">
             <td th:text="${servico.id}"></td>
             <td th:text="${servico.nome}"></td>
+            <td> <a th:href="@{'/atualizarservico/' + ${servico.id}}">Detalhes</a></td>
+            <td> <a th:href="@{'/removerservico/' + ${servico.id}}">Remover</a></td>
         </tr>
     </table>
 </body>

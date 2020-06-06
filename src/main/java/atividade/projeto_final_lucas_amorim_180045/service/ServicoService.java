@@ -28,5 +28,9 @@ public class ServicoService {
 
 	public Servico getServicoById(Integer id) {
 		return sr.findById(id).get();
-	} 
+    } 
+    
+    public void remover(Servico servico) {
+        sr.delete(servico);
+	}
 }

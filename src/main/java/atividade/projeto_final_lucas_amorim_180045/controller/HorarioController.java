@@ -77,5 +77,25 @@ public class HorarioController {
 
         return "redirect:/escolherservicos/" + cod;
     }
+
+    @GetMapping("/atualizarhorario/{id}")
+    public ModelAndView update(@PathVariable(name="id") Integer id){
+        ModelAndView mv = new ModelAndView("HorarioUpdate");
+        Horario horario = hs.getHorarioById(id);
+
+        mv.addObject("horario", horario);
+        mv.addObject("clientes", cs.getClientes());
+        mv.addObject("profissionais", ps.getProfissionais());
+        return mv;
+    }
+
+    @GetMapping("/removerhorario/{id}")
+    public String remover(@PathVariable (name="id") Integer id){
+        
+        Horario horario = hs.getHorarioById(id);
+        hs.remover(horario);
+
+        return "redirect:/horario";
+    }
     
 }

@@ -57,15 +57,19 @@
             <th>Cliente</th>
             <th>Profissional</th>
             <th>Servico</th>
+            <th>Atualizar</th>
+            <th>Remover</th>
         </tr>
        
         <tr th:each="horario : ${horarios}">
             <td th:text="${horario.id}"></td>
             <td th:text="${horario.data}"></td>
             <td th:text="${horario.hora}"></td>
-            <td th:text="${horario.cliente.nome}"></td>
-            <td th:text="${horario.profissional.nome}"></td>
+            <td th:text="${horario.cliente?.nome}"></td>
+            <td th:text="${horario.profissional?.nome}"></td>
             <td> <a th:href="@{'/escolherservicos/' + ${horario.id}}">Detalhes</a></td>
+            <td> <a th:href="@{'/atualizarhorario/' + ${horario.id}}">Detalhes</a></td>
+            <td> <a th:href="@{'/removerhorario/' + ${horario.id}}">Remover</a></td>
         </tr>
     </table>
 </body>

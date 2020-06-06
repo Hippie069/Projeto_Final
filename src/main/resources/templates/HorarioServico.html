@@ -23,7 +23,7 @@
     <br><b>Hora: </b> 
     <span th:text="${horario.hora}"></span>
     <br><b>Cliente: </b> 
-    <span th:text="${horario.cliente.nome}"></span>
+    <span th:text="${horario.cliente?.nome}"></span>
     <br><b>Profissional: </b> 
     <span th:text="${horario.profissional.nome}"></span>
 
@@ -38,8 +38,8 @@
         </tr>
        
         <tr th:each="servico: ${horario.servicos}">
-            <td th:text="${servico.id}"></td>
-            <td th:text="${servico.nome}"></td>
+            <td th:text="${servico?.id}"></td>
+            <td th:text="${servico?.nome}"></td>
         </tr>
     </table>
     <br>

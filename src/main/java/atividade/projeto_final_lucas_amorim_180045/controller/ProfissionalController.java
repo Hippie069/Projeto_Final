@@ -85,5 +85,23 @@ public class ProfissionalController {
 
         return mv;
     }
+
+    @GetMapping("/atualizarprofissional/{id}")
+    public ModelAndView update(@PathVariable(name="id") Integer id){
+        ModelAndView mv = new ModelAndView("ProfissionalUpdate");
+        Profissional profissional = ps.getProfissionalById(id);
+
+        mv.addObject("profissional", profissional);
+        return mv;
+    }
+
+    @GetMapping("/removerprofissional/{id}")
+    public String remover(@PathVariable (name="id") Integer id){
+        
+        Profissional profissional = ps.getProfissionalById(id);
+        ps.remover(profissional);
+
+        return "redirect:/profissional";
+    }
     
 }

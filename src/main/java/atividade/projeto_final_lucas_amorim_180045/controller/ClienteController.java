@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -31,6 +32,25 @@ public class ClienteController {
 
         return "redirect:/cliente";
     }
+
+    @GetMapping("/atualizarcliente/{id}")
+    public ModelAndView update(@PathVariable(name="id") Integer id){
+        ModelAndView mv = new ModelAndView("ClienteUpdate");
+        Cliente cliente = cs.getClienteById(id);
+
+        mv.addObject("cliente", cliente);
+        return mv;
+    }
+
+    @GetMapping("/removercliente/{id}")
+    public String remover(@PathVariable (name="id") Integer id){
+        
+        Cliente cliente = cs.getClienteById(id);
+        cs.remover(cliente);
+
+        return "redirect:/cliente";
+    }
+
 
     /*@GetMapping("/associados/{id}")
     public ModelAndView associados(@PathVariable(name="id") Integer id){

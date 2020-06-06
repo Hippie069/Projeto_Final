@@ -24,5 +24,8 @@ public class ClienteService {
 
 	public Cliente getClienteById(Integer id) {
 		return cr.findById(id).get();
-	} 
+    } 
+    public void remover(Cliente cliente) {
+        cr.delete(cliente);
+	}
 }

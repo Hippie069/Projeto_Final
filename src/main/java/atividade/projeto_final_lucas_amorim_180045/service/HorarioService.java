@@ -23,5 +23,9 @@ public class HorarioService {
 
 	public Horario getHorarioById(Integer id) {
 		return hr.findById(id).get();
-	} 
+    } 
+
+    public void remover(Horario horario) {
+        hr.delete(horario);
+	}
 }

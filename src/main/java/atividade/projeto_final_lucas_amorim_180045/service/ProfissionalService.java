@@ -23,5 +23,9 @@ public class ProfissionalService {
 
 	public Profissional getProfissionalById(Integer id) {
 		return pr.findById(id).get();
-	} 
+    } 
+    
+    public void remover(Profissional profissional) {
+        pr.delete(profissional);
+	}
 }
