@@ -14,11 +14,6 @@ public class ServicoService {
     private ServicoRepository sr;
 
     public List<Servico> getServicos(){
-        if(sr.count() == 0){
-            sr.save(new Servico("Corte"));
-            sr.save(new Servico("Barba"));
-           
-        }
         return sr.findAll();
     }
 
